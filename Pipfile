@@ -8,6 +8,7 @@ ollama = "*"
 scikit-learn = "*"
 chromadb = "*"
 openai = "*"
+python-dotenv = "*"
 
 [dev-packages]
 
