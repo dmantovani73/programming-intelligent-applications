@@ -9,6 +9,15 @@ scikit-learn = "*"
 chromadb = "*"
 openai = "*"
 python-dotenv = "*"
+google-genai = "*"
+litellm = "*"
+langchain = "*"
+langchain-google-genai = "*"
+langchain-mistralai = "*"
+langchain-community = "*"
+langchain-ollama = "*"
+pydantic = "*"
+tavily-python = "*"
 
 [dev-packages]
 
