@@ -21,13 +21,18 @@ for chunk in stream:
     print(chunk.content, end="", flush=True)
 
 # Chat prompt template
-prompt_template = ChatPromptTemplate.from_messages([
-    ("system", "Sei un esperto in machine learning, rispondi sempre in italiano, dai spiegazioni sintetiche e concise comprensibili anche a non esperti."),
-    ("human", "{input}"),
-])
+prompt_template = ChatPromptTemplate.from_messages(
+    [
+        (
+            "system",
+            "Sei un esperto in machine learning, rispondi sempre in italiano, dai spiegazioni sintetiche e concise comprensibili anche a non esperti.",
+        ),
+        ("human", "{input}"),
+    ]
+)
 
-# Chat
-chat = prompt_template | client # chain espressa in LCEL (LangChain Express Language)
+# LangChain Express Language (LCEL) - PromptTemplate + Client
+chat = prompt_template | client
 stream = chat.stream({"input": "Machine Learning"})
 print("\n\nPromptTemplate:")
 for chunk in stream:

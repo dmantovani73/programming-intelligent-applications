@@ -7,38 +7,46 @@ from langchain_ollama import ChatOllama, OllamaEmbeddings
 
 load_dotenv()
 
-def get_client(provider: str, model: str = None) -> BaseChatModel:
+
+def get_client(
+    provider: str, model: str = None, temperature: float = 0.1
+) -> BaseChatModel:
     """
     Creates and returns a chat model client for the specified provider.
-    
+
     Args:
         provider: The LLM provider name ('google', 'mistral', or 'ollama')
         model: Optional model name. If not provided, uses a default model for the provider.
-    
+
     Returns:
         BaseChatModel: A configured chat model client for the specified provider.
-    
+
     Raises:
         ValueError: If an unsupported provider is specified.
     """
     if provider == "google":
-        return ChatGoogleGenerativeAI(model=model or "gemini-1.5-flash-latest")
+        return ChatGoogleGenerativeAI(
+            model=model or "gemini-1.5-flash-latest", temperature=temperature
+        )
     elif provider == "mistral":
-        return ChatMistralAI(model=model or "mistral-small-latest")
+        return ChatMistralAI(
+            model=model or "mistral-small-latest", temperature=temperature
+        )
     elif provider == "ollama":
-        return ChatOllama(model=model or "phi4-mini:latest")
-    
+        return ChatOllama(model=model or "phi4-mini:latest", temperature=temperature)
+
+
 def get_embeddings(provider: str, model: str = None) -> Embeddings:
     """
     Creates and returns an embeddings client for the specified provider.
-    
+
     Args:
         provider: The embeddings provider name ('google', 'mistral', or 'ollama')
         model: Optional model name. If not provided, uses a default model for the provider.
-    
+
     Returns:
         BaseEmbedding: A configured embeddings client for the specified provider.
-    
+
     Raises:
         ValueError: If an unsupported provider is specified.
     """
