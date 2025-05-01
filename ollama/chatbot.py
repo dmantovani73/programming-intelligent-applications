@@ -63,7 +63,11 @@ def ollama_chat(message, history, model_name, temperature):
             stream=False,
             options={"temperature": temperature},
         )
-        return response["message"]["content"]
+
+        content = response["message"]["content"]
+        print(f"Response from {model_name}: {content}")
+
+        return content
     except Exception as e:
         return f"An error occurred while communicating with Ollama: {e}"
 
